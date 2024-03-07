@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Main\CourseController;
 use App\Http\Controllers\Main\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::match(['GET', 'POST'], '/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [CourseController::class, 'index'])->name('course.index');
 Route::get('/{id}', [CourseController::class, 'detail'])->name('course.detail');

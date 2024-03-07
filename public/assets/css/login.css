@@ -1,0 +1,113 @@
+:root {
+    --main: #165d7d;
+}
+
+body {
+    background: var(--main);
+}
+
+.container {
+    height: calc(100dvh - 80px);
+    width: 100dvw;
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    width: 520px;
+    box-shadow: var(--bs-box-shadow);
+    border: none;
+
+    @media (max-width: 1024px) {
+        width: 90%;
+        height: auto;
+        padding: 40px 0px 60px 0px;
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        form {
+            flex: 1;
+
+            .col-12 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .input-group {
+                padding: 0px !important;
+                display: flex;
+                align-items: center;
+
+                input {
+                    border: none !important;
+                }
+
+                #togglePassword {
+                    width: 35px;
+                    display: grid;
+                    place-items: center;
+                    cursor: pointer;
+                }
+            }
+
+            .btn-login {
+                background-color: var(--main);
+                border: 1px solid var(--main);
+                color: white;
+                transition: opacity 0.3s;
+                padding: 6px;
+            }
+
+            .btn-login:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+}
+
+/* CIRCLES */
+
+@keyframes moveUpDown {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30%);
+    }
+}
+
+.circle-1,
+.circle-2 {
+    position: absolute;
+    background: rgba(255, 231, 108, 0.2);
+    border-radius: 100%;
+    filter: blur(17.5px);
+}
+
+.circle-1 {
+    height: 350px;
+    width: 350px;
+    left: 5%;
+    bottom: 5%;
+    animation: moveUpDown 8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.circle-2 {
+    height: 180px;
+    width: 180px;
+    right: 15%;
+    top: 5%;
+    animation: moveUpDown 8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation-direction: alternate;
+}
