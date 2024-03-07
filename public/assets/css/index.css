@@ -1,0 +1,109 @@
+:root {
+    --main: #4DA086;
+    --secondary: #F8DCAA;
+    --accent: #AAD6FE;
+
+    --text: #000000bc;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    height: 100dvh !important;
+}
+
+main {
+    #courses {
+        .container {
+    
+            .slider-container {
+                max-width: 100%;
+                height: auto;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 12px;
+    
+                .content {
+                    width: calc(300px + 12px); 
+                    height: auto;
+                    display: inline-block;
+                    border: 1px solid gainsboro;
+                    margin-right: 12px; 
+                    border-radius: 10px;
+                    transition: box-shadow 0.3s;
+                
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                
+                    img {
+                        width: 100% !important;
+                        border-top-right-radius: 10px;
+                        border-top-left-radius: 10px;
+                    }
+                }
+            }    
+        }
+    }
+}
+
+footer {
+    min-height: 400px;
+    width: 100dvw;
+    background: #27272B;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* COMPONENTS */
+
+.bg-teal {
+    background: var(--main);
+}
+
+.btn-teal {
+    background: var(--main);
+    color: white;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-teal:hover {
+    background: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+}
+
+.rounded-btn {
+    width: auto;
+    height: auto;
+    padding: 4px 16px;
+    border-radius: 50px;
+    border: 1px solid black;
+}
+
+.clamp-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
