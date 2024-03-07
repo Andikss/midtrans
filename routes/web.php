@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::match(['GET', 'POST'], '/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
 
-Route::get('/', [CourseController::class, 'index'])->name('course.index');
-Route::get('/{id}', [CourseController::class, 'detail'])->name('course.detail');
+Route::get('/', [CourseController::class, 'index'])->name('course.index')->middleware('auth:sanctum');
+Route::get('/{id}', [CourseController::class, 'detail'])->name('course.detail')->middleware('auth:sanctum');
 
 # Transaction Routes
 Route::group(['prefix' => 'transaction', 'middleware' => 'auth:sanctum'], function () {

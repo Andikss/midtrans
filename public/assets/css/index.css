@@ -18,7 +18,7 @@ body {
 }
 
 main {
-
+    height: 100dvh;
     #course {
         width: 100dvw;
         min-height: 100dvh;

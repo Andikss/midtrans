@@ -3,7 +3,7 @@
 }
 
 body {
-    background: var(--main);
+    background: #165d7d !important;
 }
 
 .container {
