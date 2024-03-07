@@ -12,7 +12,12 @@ class CourseTransaction extends Model
 
     protected $primaryKey = 'id';
     protected $table      = 'course_transaction';
-    protected $guarded    = ['id'];
+    protected $fillable   = [
+        'id',
+        'user_id',
+        'course_id',
+        'is_paid'
+    ];
 
     public function user(): BelongsTo
     {

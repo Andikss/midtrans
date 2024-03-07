@@ -8,6 +8,7 @@ use App\Models\CourseTransaction;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Midtrans\Config;
 use Midtrans\Snap;
 
@@ -22,6 +23,7 @@ class TransactionController extends Controller
 
             $course      = Course::find($request->id);
             $transaction = CourseTransaction::create([
+                'id'        => Str::uuid(),
                 'user_id'   => Auth::user()->id,
                 'course_id' => $course->id,
                 'is_paid'   => 0
@@ -64,6 +66,7 @@ class TransactionController extends Controller
 
                 $transaction = CourseTransaction::find($request->order_id);
                 $transaction->update(['is_paid' => true]);
+                
             }
         }
     }
