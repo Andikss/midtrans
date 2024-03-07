@@ -14,4 +14,10 @@ class CourseController extends Controller
 
         return view('pages.course', compact('courses'));
     }
+
+    public function detail($id)
+    {
+        $course = Course::with(['category'])->find($id);
+        return view('pages.detail', compact('course'));
+    }
 }

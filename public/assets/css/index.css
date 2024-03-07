@@ -18,6 +18,14 @@ body {
 }
 
 main {
+
+    #course {
+        width: 100dvw;
+        min-height: 100dvh;
+        background: linear-gradient(to right, white 70%, var(--main) 30%);
+        padding-top: 80px;
+    }
+    
     #courses {
         .container {
     

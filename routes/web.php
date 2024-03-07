@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Main\CourseController;
+use App\Http\Controllers\Main\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CourseController::class, 'index']);
+Route::get('/', [CourseController::class, 'index'])->name('course.index');
+Route::get('/{id}', [CourseController::class, 'detail'])->name('course.detail');
+
+# Transaction Routes
+Route::group(['prefix' => 'transaction', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('/{$id}', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/', [TransactionController::class, 'store'])->name('transaction.store');
+});
