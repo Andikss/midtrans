@@ -62,9 +62,6 @@ Well.. for example, here, we'll create a simple course website where a user can 
 - **Transaction Table** : storing all user's transaction
 <br>
 
-**NOTE:** <br>
-**Since we're just going to do a testign here, I suggest u to use the database design I make,**
-
 <img src="erd.png" alt="ERD" width="50%">
 
 ## Frontend (view) Setup
