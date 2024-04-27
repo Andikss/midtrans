@@ -62,8 +62,6 @@ Well.. for example, here, we'll create a simple course website where a user can 
 - **Transaction Table** : storing all user's transaction
 <br>
 
-<img src="erd.png" alt="ERD" width="50%">
-
 ## Frontend (view) Setup
 
 Well.. for example, here, we'll create a simple course website where a user can purchase the courses they want. So, I assume you'll create:
