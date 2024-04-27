@@ -72,40 +72,11 @@ Well.. for example, here, we'll create a simple course website where a user can 
 - **Transaction Page**: to display receipts and the payment gateway for the user's transaction.
   > You could use the sample code I wrote in this repository
 
-Open yout first terminal, and run the php server
+Open your terminal, and run the php server
 
 ```bash
 php artisan serve
 ```
-
-Open your second terminal and run the node server
-
-```bash
-npm run dev
-```
-
-Lastly, open your third terminal and run the laravel queue work
-
-```bash
-php artisan queue:work
-```
-
-Login with the default user
-
-```bash
-username = admin
-password = password
-```
-
-Well, that's it! You can now chat with your crush. (if you have one) 😏
-
-## Framework & Library
-
-- PHP 8.1
-- Laravel 10.x
-- Laravel Livewire
-- Laravel Echo
-- AlpineJS
 
 ## Developer
 
