@@ -1,66 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# **Midtrans - Payment Gateway**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Midtrans is a leading payment gateway in Indonesia that empowers businesses of all sizes to seamlessly accept online payments. Whether you're a startup, SME, or enterprise, Midtrans provides a robust platform and suite of payment solutions to cater to your unique needs.
 
-## About Laravel
+## Midtrans Laravel Setup
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+First of all, let's set up our Laravel application.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+laravel new laravel-midtrans
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Then, install the Midtrans dependency for PHP using Composer:
 
-## Learning Laravel
+```bash
+composer require midtrans/midtrans-php
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Then, you'll need to [create a Midtrans Account](https://docs.midtrans.com/) to access their services. <br>
+- Change the environment to sandbox (for development).
+- You can change the environment at the top of the sidebar. <br>
+- Go to **Settings** > **Access Keys**. You'll find your client credentials there, such as: <br>
+  **[merchant_id, client_id, and server_key]**.
+- Copy all of those and paste them into the .env file in your Laravel project. <br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+MIDTRANS_MERCHANT_ID="YOUR_MERCHANT_ID"
+MIDTRANS_CLIENT_KEY="YOUR_CLIENT_KEY"
+MIDTRANS_SERVER_KEY="YOUR_SERVER_KEY"
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Then create a new config file named **midtrans.php** in the **App\Config** directory and fill it with this data:
 
-## Laravel Sponsors
+```bash
+<?php
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+return [
+    'merchant_id' => env('MIDTRANS_MERCHANT_ID'),
+    'client_key'  => env('MIDTRANS_CLIENT_KEY'),
+    'server_key'  => env('MIDTRANS_SERVER_KEY'),
+];
+```
 
-### Premium Partners
+Now add the Midtrans Snap configuration script at the **head (html) section** of your view layout file.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+<script
+    type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="{{ config('midtrans.client_key') }}">
+</script>
+```
 
-## Contributing
+> Since this is just for development testing, we'll use the sandbox version.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Database Setup
 
-## Code of Conduct
+Well.. for example, here, we'll create a simple course website where a user can purchase the courses they want. So I assume you'll create:
+- **User Table** : storing user data
+- **Course Table** : storing all of our available courses
+- **User Course Table** : storing user's courses (courses that has been purchase by a user)
+- **Transaction Table** : storing all user's transaction
+<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**NOTE:** <br>
+**Since we're just going to do a testign here, I suggest u to use the database design I make,**
 
-## Security Vulnerabilities
+<img src="erd.png" alt="ERD" width="50%">
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Frontend (view) Setup
 
-## License
+Well.. for example, here, we'll create a simple course website where a user can purchase the courses they want. So, I assume you'll create:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Login Page**: so that the user has to be logged in before making any purchases.
+- **Course List Page**: to display all of our courses.
+- **Detail Page**: to display course details when a user chooses a course.
+- **Transaction Page**: to display receipts and the payment gateway for the user's transaction.
+  > You could use the sample code I wrote in this repository
+
+Open yout first terminal, and run the php server
+
+```bash
+php artisan serve
+```
+
+Open your second terminal and run the node server
+
+```bash
+npm run dev
+```
+
+Lastly, open your third terminal and run the laravel queue work
+
+```bash
+php artisan queue:work
+```
+
+Login with the default user
+
+```bash
+username = admin
+password = password
+```
+
+Well, that's it! You can now chat with your crush. (if you have one) 😏
+
+## Framework & Library
+
+- PHP 8.1
+- Laravel 10.x
+- Laravel Livewire
+- Laravel Echo
+- AlpineJS
+
+## Developer
+
+- [Andika Dwi Saputra](https://andikss.github.io)..
